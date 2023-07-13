@@ -21,6 +21,7 @@ export default function Invite(props: any) {
   const invitation_id = props.params.id;
   const [isLoading, setIsLoading] = useState(false);
   const [isValidating, setIsValidating] = useState(true);
+  const [link, setLink] = useState("");
   const params = useSearchParams();
 
   const handleSubmit = () => {
@@ -71,6 +72,8 @@ export default function Invite(props: any) {
   };
 
   useEffect(() => {
+    setLink(window?.location.href);
+
     validateInvitation(invitation_id)
       .then((res) => {
         if (!res) {
@@ -91,7 +94,7 @@ export default function Invite(props: any) {
             Validating
           </h1>
           <p className="mt-3 text-sm px-5 text-gray-400 text-center">
-            <span className="block">[{window?.location.href}]</span>
+            {link && <span className="block">[{link}]</span>}
           </p>
         </div>
 

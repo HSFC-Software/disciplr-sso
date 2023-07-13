@@ -1,13 +1,7 @@
-/* eslint-disable @next/next/no-async-client-component */
-"use client";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
-// import axios from "axios";
-import { useState } from "react";
 
 export default function Invite(props: any) {
-  const params = useSearchParams();
-  const link = params.get("link");
+  const link = props.searchParams.link;
 
   return (
     <main className="h-screen w-full flex justify-center items-center relative">
