@@ -76,7 +76,8 @@ export default function SignIn() {
           Sign In
         </button>
         <p className="mt-3 px-5 text-sm text-gray-400 text-center">
-          By clicking &quot;Sign In&quot; you agree to our{" "}
+          By clicking &quot;Submit&quot; or &quot;Sign In with Google&quot;, you
+          agree to our{" "}
           <a
             className="text-[#6e7ac5]"
             href="https://app.fishgen.org/privacy.html"
