@@ -20,7 +20,18 @@ export default function SignIn() {
     const redirect_uri = params.get("redirect_uri");
     const state = params.get("state");
 
+    if (userEl.value === "") {
+      userEl.focus();
+      return;
+    }
+
+    if (passEl.value === "") {
+      passEl.focus();
+      return;
+    }
+
     setIsLoading(true);
+
     axios
       .post(
         `${url}/v2/auth`,
@@ -30,8 +41,8 @@ export default function SignIn() {
         },
         { headers: { Authorization: `Bearer ${key}` } }
       )
-      .then(() => {
-        window.location.href = `${redirect_uri}?client_id=${client_id}&state=${state}`;
+      .then((res) => {
+        window.location.href = `${redirect_uri}?client_id=${client_id}&state=${state}&token=${res.data.token}`;
       })
       .catch(() => {
         alert("Invalid username or password");
@@ -43,17 +54,17 @@ export default function SignIn() {
 
   return (
     <main className="h-screen w-full flex justify-center items-center">
-      <div className="flex flex-col gap-3 max-w-[450px] w-full">
+      <div className="flex flex-col gap-3 max-w-[450px] w-full mx-7">
         <div className="flex justify-center w-full mb-7">
           <Image
             src="/disciplr-logo.png"
             alt="disciplr"
-            width="100"
-            height="100"
+            width="75"
+            height="75"
           />
         </div>
         <input
-          // autoFocus
+          autoFocus
           disabled={isLoading}
           required
           id="username"

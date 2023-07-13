@@ -94,7 +94,14 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <main className="h-screen w-full flex justify-center items-center relative">
+          {children}
+          <div className="absolute bottom-4 text-xs text-gray-400">
+            Disciplr SSO 0.0.1 - HSFC Software © {new Date().getFullYear()}
+          </div>
+        </main>
+      </body>
     </html>
   );
 }
