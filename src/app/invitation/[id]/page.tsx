@@ -63,7 +63,7 @@ export default function Invite(props: any) {
             { headers: { Authorization: `Bearer ${key}` } }
           )
           .then((res) => {
-            window.location.href = `${redirect_uri}?token=${res.data.token}`;
+            window.location.href = `${redirect_uri}?#access_token=${res.data.token}`;
           });
       })
       .finally(() => {
@@ -188,7 +188,7 @@ export default function Invite(props: any) {
         required
         id="username"
         className="bg-gray-50 py-4 px-6 rounded-xl"
-        placeholder="Phone or Email Address"
+        placeholder="Email Address"
       />
       <input
         required

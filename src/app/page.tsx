@@ -42,7 +42,7 @@ export default function SignIn() {
         { headers: { Authorization: `Bearer ${key}` } }
       )
       .then((res) => {
-        window.location.href = `${redirect_uri}?client_id=${client_id}&state=${state}&token=${res.data.token}`;
+        window.location.href = `${redirect_uri}?client_id=${client_id}&state=${state}&#access_token=${res.data.token}`;
       })
       .catch(() => {
         alert("Invalid username or password");
@@ -69,7 +69,7 @@ export default function SignIn() {
           required
           id="username"
           className="bg-gray-50 py-4 px-6 rounded-xl"
-          placeholder="Phone or Email Address"
+          placeholder="Email Address"
         />
         <input
           required
