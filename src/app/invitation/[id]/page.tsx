@@ -81,6 +81,10 @@ export default function Invite(props: any) {
             "/invitation/expired?link=" + window.location.href;
         }
       })
+      .catch(() => {
+        window.location.href =
+          "/invitation/expired?link=" + window.location.href;
+      })
       .finally(() => {
         setIsValidating(false);
       });
