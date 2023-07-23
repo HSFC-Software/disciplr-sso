@@ -2,7 +2,7 @@
 import axios from "axios";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const url = process.env.NEXT_PUBLIC_AUTH_URL ?? "";
 const key = process.env.NEXT_PUBLIC_AUTH_KEY ?? "";
@@ -52,6 +52,18 @@ export default function SignIn() {
       });
   };
 
+  const onBlur = () => {
+    document.getElementById("footnote")?.classList.remove("hidden");
+  };
+
+  const onFocus = () => {
+    document.getElementById("footnote")?.classList.add("hidden");
+  };
+
+  useEffect(() => {
+    document.getElementById("username")?.focus();
+  }, []);
+
   return (
     <main className="h-screen w-full flex justify-center items-center">
       <div className="flex flex-col gap-3 max-w-[450px] w-full mx-7">
@@ -64,17 +76,23 @@ export default function SignIn() {
           />
         </div>
         <input
-          autoFocus
           disabled={isLoading}
           required
+          onFocus={onFocus}
+          onBlur={onBlur}
           id="username"
           className="bg-gray-50 py-4 px-6 rounded-xl"
           placeholder="Email Address"
         />
         <input
           required
+          onFocus={onFocus}
+          onBlur={onBlur}
           disabled={isLoading}
           id="password"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleSubmit();
+          }}
           className="bg-gray-50 py-4 px-6 rounded-xl"
           placeholder="Password"
           type="password"
