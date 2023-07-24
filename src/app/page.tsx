@@ -1,8 +1,10 @@
 "use client";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { BiCheck } from "react-icons/bi";
 
 const url = process.env.NEXT_PUBLIC_AUTH_URL ?? "";
 const key = process.env.NEXT_PUBLIC_AUTH_KEY ?? "";
@@ -11,6 +13,7 @@ export default function SignIn() {
   const params = useSearchParams();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [remember, setRemember] = useState(true);
 
   const handleSubmit = () => {
     const userEl = document.getElementById("username") as HTMLInputElement;
@@ -65,16 +68,13 @@ export default function SignIn() {
   }, []);
 
   return (
-    <main className="h-screen w-full flex justify-center items-center">
+    <main className="h-screen w-full flex justify-center items-center relative">
+      <div className="absolute top-7 left-7">
+        <Image src="/disciplr-logo.png" alt="disciplr" width="36" height="36" />
+      </div>
       <div className="flex flex-col gap-3 max-w-[450px] w-full mx-7">
-        <div className="flex justify-center w-full mb-7">
-          <Image
-            src="/disciplr-logo.png"
-            alt="disciplr"
-            width="75"
-            height="75"
-          />
-        </div>
+        <h1 className="text-3xl font-bold text-gray-700 mb-4">Sign In</h1>
+
         <input
           disabled={isLoading}
           required
@@ -97,14 +97,42 @@ export default function SignIn() {
           placeholder="Password"
           type="password"
         />
+
+        <div className="flex justify-between mt-3 items-center flex-wrap gap-y-4">
+          <div className="flex gap-2 text-gray-500 items-center shrink-0">
+            {remember && (
+              <button
+                onClick={() => setRemember(false)}
+                className="h-5 w-5 rounded bg-[#6e7ac5] text-white flex items-center justify-center"
+              >
+                <BiCheck />
+              </button>
+            )}
+            {!remember && (
+              <button
+                onClick={() => setRemember(true)}
+                className="h-5 w-5 rounded bg-gray-100 text-white flex items-center justify-center"
+              />
+            )}
+            <div>Remember me</div>
+          </div>
+          <div className="text-center">
+            <Link
+              href="/forgot"
+              className="text-gray-400 hover:underline cursor-pointer"
+            >
+              Forgot your password?
+            </Link>
+          </div>
+        </div>
         <button
           disabled={isLoading}
           onClick={handleSubmit}
-          className="disabled:bg-gray-50 bg-gray-100 hover:bg-gray-200 py-3 rounded-xl font-medium text-gray-700"
+          className="disabled:bg-gray-50 bg-gray-100 hover:bg-gray-200 py-3 rounded-xl font-medium text-gray-700 mt-4"
         >
-          Sign In
+          Submit
         </button>
-        <p className="mt-3 px-5 text-sm text-gray-400 text-center">
+        <p className="text-sm text-gray-400 text-center px-5">
           By clicking &quot;Sign In&quot; you agree to our{" "}
           <a
             className="text-[#6e7ac5]"
