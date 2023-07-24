@@ -47,7 +47,7 @@ export default function Invite(props: any) {
       )
       .then(() => {
         // redirect the user to success screen
-        window.location.href = `/forgot/success`;
+        window.location.href = `/forgot/change-success`;
       })
       .catch(() => {
         alert("Unable to reset password now. Please try again later.");

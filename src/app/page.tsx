@@ -71,15 +71,8 @@ export default function SignIn() {
 
   return (
     <main className="h-screen w-full flex justify-center items-center relative">
-      <div
-        id="logo"
-        className="abforgot/6cd0e352-7d0c-49c7-adf2-12b904056fa0solute top-7 left-7"
-      >
-        <Image src="/disciplr-logo.png" alt="disciplr" width="36" height="36" />
-      </div>
       <div className="flex flex-col gap-3 max-w-[450px] w-full mx-7 py-7">
         <h1 className="text-3xl font-bold text-gray-700 mb-4">Sign In</h1>
-
         <input
           disabled={isLoading}
           required
