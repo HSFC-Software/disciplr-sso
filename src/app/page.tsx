@@ -57,10 +57,12 @@ export default function SignIn() {
 
   const onBlur = () => {
     document.getElementById("footnote")?.classList.remove("hidden");
+    document.getElementById("logo")?.classList.remove("hidden");
   };
 
   const onFocus = () => {
     document.getElementById("footnote")?.classList.add("hidden");
+    document.getElementById("logo")?.classList.add("hidden");
   };
 
   useEffect(() => {
@@ -69,10 +71,10 @@ export default function SignIn() {
 
   return (
     <main className="h-screen w-full flex justify-center items-center relative">
-      <div className="absolute top-7 left-7">
+      <div id="logo" className="absolute top-7 left-7">
         <Image src="/disciplr-logo.png" alt="disciplr" width="36" height="36" />
       </div>
-      <div className="flex flex-col gap-3 max-w-[450px] w-full mx-7">
+      <div className="flex flex-col gap-3 max-w-[450px] w-full mx-7 py-7">
         <h1 className="text-3xl font-bold text-gray-700 mb-4">Sign In</h1>
 
         <input

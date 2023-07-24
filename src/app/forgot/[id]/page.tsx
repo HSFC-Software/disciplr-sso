@@ -76,10 +76,12 @@ export default function Invite(props: any) {
 
   const onBlur = () => {
     document.getElementById("footnote")?.classList.remove("hidden");
+    document.getElementById("logo")?.classList.remove("hidden");
   };
 
   const onFocus = () => {
     document.getElementById("footnote")?.classList.add("hidden");
+    document.getElementById("logo")?.classList.add("hidden");
   };
 
   useEffect(() => {
@@ -179,10 +181,10 @@ export default function Invite(props: any) {
 
   return (
     <>
-      <div className="absolute top-7 left-7">
+      <div id="logo" className="absolute top-7 left-7">
         <Image src="/disciplr-logo.png" alt="disciplr" width="36" height="36" />
       </div>
-      <div className="flex flex-col gap-3 max-w-[450px] w-full mx-7 relative">
+      <div className="flex flex-col gap-3 max-w-[450px] w-full m-7 relative">
         <h1 className="text-3xl font-bold text-gray-700">Set New Password</h1>
 
         <input
