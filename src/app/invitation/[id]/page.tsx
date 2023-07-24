@@ -94,7 +94,7 @@ export default function Invite(props: any) {
     return (
       <div className="flex flex-col items-center gap-4">
         <div>
-          <h1 className="text-5xl font-bold text-center px-7 text-gray-700">
+          <h1 className="text-3xl font-bold text-center px-7 text-gray-700">
             Validating
           </h1>
           <p className="mt-3 text-sm px-5 text-gray-400 text-center">

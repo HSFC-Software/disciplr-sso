@@ -9,10 +9,10 @@ export default function Invite(props: any) {
         <Image src="/disciplr-logo.png" alt="disciplr" width="36" height="36" />
       </div>
       <div>
-        <h1 className="text-5xl font-bold text-center px-7 text-gray-700">
+        <h1 className="text-3xl font-bold px-7 text-gray-700">
           Your invitation has expired
         </h1>
-        <p className="mt-3 text-sm px-5 text-gray-400 text-center">
+        <p className="mt-3 text-sm px-7 text-gray-400">
           Kindly contact your Disciplr to request a new invitation.
           <span className="block">[{link}]</span>
         </p>
