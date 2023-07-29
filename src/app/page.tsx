@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BiCheck } from "react-icons/bi";
-import { FaEyeSlash, FaEye } from 'react-icons/fa';
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 
 const url = process.env.NEXT_PUBLIC_AUTH_URL ?? "";
 const key = process.env.NEXT_PUBLIC_AUTH_KEY ?? "";
@@ -15,7 +15,7 @@ export default function SignIn() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [remember, setRemember] = useState(true);
-  const[showPass,setshowPass]=useState(false);
+  const [showPass, setshowPass] = useState(false);
 
   const handleSubmit = () => {
     const userEl = document.getElementById("username") as HTMLInputElement;
@@ -72,12 +72,12 @@ export default function SignIn() {
   }, []);
 
   const showPasswordHandler = () => {
-    if(showPass) {
-      setshowPass(false)
+    if (showPass) {
+      setshowPass(false);
     } else {
-      setshowPass(true)
-    } 
-  }
+      setshowPass(true);
+    }
+  };
 
   return (
     <main className="h-screen w-full flex justify-center items-center relative">
@@ -93,27 +93,27 @@ export default function SignIn() {
           placeholder="Email Address"
         />
         <div className="relative">
-            <input
-              required
-              onFocus={onFocus}
-              onBlur={onBlur}
-              disabled={isLoading}
-              id="password"
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleSubmit();
-              }}
-              className="bg-gray-50 py-4 px-6 rounded-xl w-full"
-              placeholder="Password"
-              type={showPass ? "text" : "password"}
-            />
-            <button 
-              className="absolute inset-y-0 right-0 mr-3"
-              onClick={showPasswordHandler}
-              >
-                {showPass ? <FaEye /> : <FaEyeSlash /> }
-            </button>
+          <input
+            required
+            onFocus={onFocus}
+            onBlur={onBlur}
+            disabled={isLoading}
+            id="password"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleSubmit();
+            }}
+            className="bg-gray-50 py-4 px-6 rounded-xl w-full"
+            placeholder="Password"
+            type={showPass ? "text" : "password"}
+          />
+          <button
+            className="absolute inset-y-0 right-0 px-5 text-gray-700"
+            onClick={showPasswordHandler}
+          >
+            {showPass ? <FaEye /> : <FaEyeSlash />}
+          </button>
         </div>
-        
+
         <div className="flex justify-between mt-3 items-center flex-wrap gap-y-4">
           <div className="flex gap-2 text-gray-500 items-center shrink-0">
             {remember && (

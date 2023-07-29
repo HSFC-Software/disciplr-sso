@@ -4,7 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaEyeSlash, FaEye } from 'react-icons/fa';
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 
 const url = process.env.NEXT_PUBLIC_AUTH_URL ?? "";
 const key = process.env.NEXT_PUBLIC_AUTH_KEY ?? "";
@@ -24,8 +24,8 @@ export default function Invite(props: any) {
   const [isValidating, setIsValidating] = useState(true);
   const [link, setLink] = useState("");
   const params = useSearchParams();
-  const[showPass,setshowPass]=useState(false);
-  const[showRepass,setshowRepass]=useState(false)
+  const [showPass, setshowPass] = useState(false);
+  const [showRepass, setshowRepass] = useState(false);
 
   const handleSubmit = () => {
     const userEl = document.getElementById("username") as HTMLInputElement;
@@ -75,20 +75,20 @@ export default function Invite(props: any) {
   };
 
   const showPasswordHandler = () => {
-    if(showPass) {
-      setshowPass(false)
+    if (showPass) {
+      setshowPass(false);
     } else {
-      setshowPass(true)
-    } 
-  }
+      setshowPass(true);
+    }
+  };
 
-    const ShowRePasswordHandler = () => {
-      if(showRepass) {
-        setshowRepass(false)
-      } else {
-        setshowRepass(true)
-      }
-  }
+  const ShowRePasswordHandler = () => {
+    if (showRepass) {
+      setshowRepass(false);
+    } else {
+      setshowRepass(true);
+    }
+  };
 
   useEffect(() => {
     setLink(window?.location.href);
@@ -200,7 +200,6 @@ export default function Invite(props: any) {
       </div>
     );
 
-  
   return (
     <div className="flex flex-col gap-3 max-w-[450px] w-full mx-7">
       <div className="flex justify-center w-full mb-7">
@@ -224,14 +223,14 @@ export default function Invite(props: any) {
           placeholder="Password"
           type={showPass ? "text" : "password"}
         />
-          <button 
-            className="absolute inset-y-0 right-0 mr-3"
-            onClick={showPasswordHandler}
-            >
-              {showPass ? <FaEye /> : <FaEyeSlash /> }
-            </button>
+        <button
+          className="absolute inset-y-0 right-0 px-5 text-gray-700"
+          onClick={showPasswordHandler}
+        >
+          {showPass ? <FaEye /> : <FaEyeSlash />}
+        </button>
       </div>
-      
+
       <div className="relative">
         <input
           required
@@ -241,14 +240,14 @@ export default function Invite(props: any) {
           placeholder="Retype Password"
           type={showRepass ? "text" : "password"}
         />
-        <button 
-            className="absolute inset-y-0 right-0 mr-3"
-            onClick={ShowRePasswordHandler}
-            >
-              {showRepass ? <FaEye /> : <FaEyeSlash /> }
-            </button>
+        <button
+          className="absolute inset-y-0 right-0 px-5 text-gray-700"
+          onClick={ShowRePasswordHandler}
+        >
+          {showRepass ? <FaEye /> : <FaEyeSlash />}
+        </button>
       </div>
-      
+
       <button
         disabled={isLoading}
         onClick={handleSubmit}
