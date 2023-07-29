@@ -4,6 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 
 const url = process.env.NEXT_PUBLIC_AUTH_URL ?? "";
 const key = process.env.NEXT_PUBLIC_AUTH_KEY ?? "";
@@ -23,6 +24,8 @@ export default function Invite(props: any) {
   const [isValidating, setIsValidating] = useState(true);
   const [link, setLink] = useState("");
   const params = useSearchParams();
+  const [showPass, setshowPass] = useState(false);
+  const [showRepass, setshowRepass] = useState(false);
 
   const handleSubmit = () => {
     const userEl = document.getElementById("username") as HTMLInputElement;
@@ -71,6 +74,22 @@ export default function Invite(props: any) {
       });
   };
 
+  const showPasswordHandler = () => {
+    if (showPass) {
+      setshowPass(false);
+    } else {
+      setshowPass(true);
+    }
+  };
+
+  const ShowRePasswordHandler = () => {
+    if (showRepass) {
+      setshowRepass(false);
+    } else {
+      setshowRepass(true);
+    }
+  };
+
   useEffect(() => {
     setLink(window?.location.href);
 
@@ -90,7 +109,7 @@ export default function Invite(props: any) {
       });
   }, []);
 
-  if (isValidating)
+  if (!isValidating)
     return (
       <div className="flex flex-col items-center gap-4">
         <div>
@@ -193,23 +212,42 @@ export default function Invite(props: any) {
         id="username"
         className="bg-gray-50 py-4 px-6 rounded-xl"
         placeholder="Email Address"
+        type="text"
       />
-      <input
-        required
-        disabled={isLoading}
-        id="password"
-        className="bg-gray-50 py-4 px-6 rounded-xl"
-        placeholder="Password"
-        type="password"
-      />
-      <input
-        required
-        disabled={isLoading}
-        id="re-password"
-        className="bg-gray-50 py-4 px-6 rounded-xl"
-        placeholder="Retype Password"
-        type="password"
-      />
+      <div className="relative">
+        <input
+          required
+          disabled={isLoading}
+          id="password"
+          className="bg-gray-50 py-4 px-6 rounded-xl w-full"
+          placeholder="Password"
+          type={showPass ? "text" : "password"}
+        />
+        <button
+          className="absolute inset-y-0 right-0 px-5 text-gray-700"
+          onClick={showPasswordHandler}
+        >
+          {showPass ? <FaEye /> : <FaEyeSlash />}
+        </button>
+      </div>
+
+      <div className="relative">
+        <input
+          required
+          disabled={isLoading}
+          id="re-password"
+          className="bg-gray-50 py-4 px-6 rounded-xl w-full"
+          placeholder="Retype Password"
+          type={showRepass ? "text" : "password"}
+        />
+        <button
+          className="absolute inset-y-0 right-0 px-5 text-gray-700"
+          onClick={ShowRePasswordHandler}
+        >
+          {showRepass ? <FaEye /> : <FaEyeSlash />}
+        </button>
+      </div>
+
       <button
         disabled={isLoading}
         onClick={handleSubmit}
